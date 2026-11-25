@@ -16,8 +16,8 @@ book:
     - href: index.qmd
       text: "Home"
     - part: JAVA
-      chapters: 
-        - java\Basics\DataTypes.qmd
+      chapters:
+        - java/Basics/DataTypes.qmd
 format:
   html:
     bread-crumbs: true
