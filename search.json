@@ -32,111 +32,111 @@
   {
     "objectID": "java/Basics/DataTypes.html",
     "href": "java/Basics/DataTypes.html",
-    "title": "Java Data Types",
+    "title": "Data Types",
     "section": "",
     "text": "Primitive types\nJava is statically typed: every variable has a type that is fixed when you declare it, and the compiler checks it before the program runs.\nJava has two families of types:",
     "crumbs": [
       "JAVA",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Java Data Types</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Data Types</span>"
     ]
   },
   {
     "objectID": "java/Basics/DataTypes.html#primitive-types",
     "href": "java/Basics/DataTypes.html#primitive-types",
-    "title": "Java Data Types",
+    "title": "Data Types",
     "section": "",
     "text": "Type\nSize\nRange\nDefault\nExample\n\n\n\n\nbyte\n8 bits\n-128 to 127\n0\nbyte b = 100;\n\n\nshort\n16 bits\n-32,768 to 32,767\n0\nshort s = 5000;\n\n\nint\n32 bits\n-2,147,483,648 to 2,147,483,647\n0\nint age = 20;\n\n\nlong\n64 bits\nabout -9.2 × 10^18 to 9.2 × 10^18\n0L\nlong n = 8_000_000_000L;\n\n\nfloat\n32 bits\nabout 6 to 7 decimal digits of precision\n0.0f\nfloat p = 99.5f;\n\n\ndouble\n64 bits\nabout 15 to 16 decimal digits of precision\n0.0\ndouble pi = 3.14159;\n\n\nchar\n16 bits\n0 to 65,535 (one UTF-16 character)\n'\\u0000'\nchar g = 'A';\n\n\nboolean\nJVM-dependent\ntrue or false\nfalse\nboolean ok = true;\n\n\n\n\n\n\n\n\n\nImportantDefaults only apply to fields\n\n\n\nThe default values above are given only to fields (variables inside a class). A local variable (inside a method) has no default, and using it before assigning gives a compile error.\n\n\n\nThings to remember\n\nWhole-number literals are int by default. Add L for long: 10000000000L.\nDecimal literals are double by default. Add f for float: 3.14f.\nchar uses single quotes ('A'); String uses double quotes (\"A\").\nUnderscores make big numbers readable: 1_000_000.\nUse int for whole numbers and double for decimals unless you have a reason not to.",
     "crumbs": [
       "JAVA",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Java Data Types</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Data Types</span>"
     ]
   },
   {
     "objectID": "java/Basics/DataTypes.html#reference-types",
     "href": "java/Basics/DataTypes.html#reference-types",
-    "title": "Java Data Types",
+    "title": "Data Types",
     "section": "Reference types",
     "text": "Reference types\nString name = \"Asha\";\nint[] marks = {80, 75, 90};\nThe most important reference type is String.\n\nStrings are immutable: methods like toUpperCase() return a new string and leave the original unchanged.\nCompare contents with equals(), not ==.\n\nString a = \"hello\";\nString b = new String(\"hello\");\n\nSystem.out.println(a == b);       // false (different objects)\nSystem.out.println(a.equals(b));  // true  (same characters)\n\n\n\n\n\n\nWarning== vs equals()\n\n\n\nFor reference types, == checks whether two variables point to the same object. equals() checks whether the contents are the same. For strings, always use equals().\n\n\nReference variables that point to nothing hold null. Calling a method on null throws a NullPointerException.",
     "crumbs": [
       "JAVA",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Java Data Types</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Data Types</span>"
     ]
   },
   {
     "objectID": "java/Basics/DataTypes.html#primitive-vs-reference",
     "href": "java/Basics/DataTypes.html#primitive-vs-reference",
-    "title": "Java Data Types",
+    "title": "Data Types",
     "section": "Primitive vs reference",
     "text": "Primitive vs reference\n\n\n\n\nPrimitive\nReference\n\n\n\n\nStores\nThe actual value\nAddress of an object\n\n\nCan be null\nNo\nYes\n\n\nHas methods\nNo\nYes\n\n\nExamples\nint, double, char\nString, int[], Integer",
     "crumbs": [
       "JAVA",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Java Data Types</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Data Types</span>"
     ]
   },
   {
     "objectID": "java/Basics/DataTypes.html#wrapper-classes",
     "href": "java/Basics/DataTypes.html#wrapper-classes",
-    "title": "Java Data Types",
+    "title": "Data Types",
     "section": "Wrapper classes",
     "text": "Wrapper classes\nEach primitive has an object version, used where objects are required (for example, in collections like ArrayList).\n\n\n\nPrimitive\nWrapper\n\n\n\n\nint\nInteger\n\n\ndouble\nDouble\n\n\nchar\nCharacter\n\n\nboolean\nBoolean\n\n\nlong\nLong\n\n\n\nJava converts automatically between the two: autoboxing (primitive to wrapper) and unboxing (wrapper to primitive).\nInteger boxed = 10;       // autoboxing\nint plain = boxed;        // unboxing\n\nArrayList&lt;Integer&gt; list = new ArrayList&lt;&gt;();\nlist.add(5);              // list cannot hold int, so 5 is boxed\nUseful wrapper methods:\nint n = Integer.parseInt(\"42\");        // String to int\nString s = String.valueOf(3.5);        // double to String\nSystem.out.println(Integer.MAX_VALUE); // 2147483647",
     "crumbs": [
       "JAVA",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Java Data Types</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Data Types</span>"
     ]
   },
   {
     "objectID": "java/Basics/DataTypes.html#type-conversion-casting",
     "href": "java/Basics/DataTypes.html#type-conversion-casting",
-    "title": "Java Data Types",
+    "title": "Data Types",
     "section": "Type conversion (casting)",
     "text": "Type conversion (casting)\n\nWidening (automatic, safe)\nA smaller type is converted to a larger one without any code:\nbyte → short → int → long → float → double\n              char ↗\nint a = 10;\ndouble d = a;        // d is 10.0\n\n\nNarrowing (manual, may lose data)\nA larger type must be cast explicitly, and the value may be truncated or wrap around.\ndouble x = 9.99;\nint y = (int) x;     // 9  (decimal part is cut, not rounded)\n\nint big = 130;\nbyte b = (byte) big; // -126 (130 does not fit in 8 bits, so it wraps)\n\n\nchar and int\nchar is really a number (its Unicode value), so arithmetic works on it.\nchar c = 'A';\nSystem.out.println(c + 1);         // 66  (int)\nSystem.out.println((char)(c + 1)); // B",
     "crumbs": [
       "JAVA",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Java Data Types</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Data Types</span>"
     ]
   },
   {
     "objectID": "java/Basics/DataTypes.html#common-gotchas",
     "href": "java/Basics/DataTypes.html#common-gotchas",
-    "title": "Java Data Types",
+    "title": "Data Types",
     "section": "Common gotchas",
     "text": "Common gotchas\nInteger division drops the decimal part\nSystem.out.println(7 / 2);     // 3\nSystem.out.println(7 / 2.0);   // 3.5\nSystem.out.println(7 % 2);     // 1  (remainder)\nOverflow wraps around silently\nint max = Integer.MAX_VALUE;\nSystem.out.println(max + 1);   // -2147483648\nIf numbers can get large, use long.\nFloating point is not exact\nSystem.out.println(0.1 + 0.2);        // 0.30000000000000004\nSystem.out.println(0.1 + 0.2 == 0.3); // false\nNever compare double values with ==. For money, use BigDecimal.\nInteger cache with ==\nInteger p = 127, q = 127;\nSystem.out.println(p == q);   // true  (small values are cached)\n\nInteger m = 128, n = 128;\nSystem.out.println(m == n);   // false (different objects)\nSystem.out.println(m.equals(n)); // true\nCompare wrapper objects with equals().",
     "crumbs": [
       "JAVA",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Java Data Types</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Data Types</span>"
     ]
   },
   {
     "objectID": "java/Basics/DataTypes.html#var-java-10-and-later",
     "href": "java/Basics/DataTypes.html#var-java-10-and-later",
-    "title": "Java Data Types",
+    "title": "Data Types",
     "section": "var (Java 10 and later)",
     "text": "var (Java 10 and later)\nFor local variables, the compiler can work out the type for you:\nvar count = 10;          // int\nvar name = \"Asha\";       // String\nThe type is still fixed; var only saves typing. It cannot be used for fields or method parameters.",
     "crumbs": [
       "JAVA",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Java Data Types</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Data Types</span>"
     ]
   },
   {
     "objectID": "java/Basics/DataTypes.html#quick-check",
     "href": "java/Basics/DataTypes.html#quick-check",
-    "title": "Java Data Types",
+    "title": "Data Types",
     "section": "Quick check",
     "text": "Quick check\n\nWhat is the default type of 3.14? double\nWhy does byte b = 200; fail? 200 is outside -128 to 127.\nWhat does (int) 5.9 give? 5\nHow should two strings be compared? With equals().",
     "crumbs": [
       "JAVA",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Java Data Types</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Data Types</span>"
     ]
   },
   {
     "objectID": "java/Basics/DataTypes.html#summary",
     "href": "java/Basics/DataTypes.html#summary",
-    "title": "Java Data Types",
+    "title": "Data Types",
     "section": "Summary",
     "text": "Summary\n\nJava has 8 primitive types; everything else is a reference type.\nUse int and double by default; add L and f for long and float literals.\nWidening conversion is automatic; narrowing needs a cast and can lose data.\nCompare objects (including strings and wrappers) with equals(), not ==.\nWatch out for integer division, overflow, and floating-point inexactness.",
     "crumbs": [
       "JAVA",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Java Data Types</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Data Types</span>"
     ]
   }
 ]
