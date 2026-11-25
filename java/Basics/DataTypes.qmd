@@ -1,4 +1,4 @@
-# Java Data Types
+# Data Types
 
 Java is **statically typed**: every variable has a type that is fixed when you declare it, and the compiler checks it before the program runs.
 
