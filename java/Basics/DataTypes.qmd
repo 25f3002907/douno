@@ -1,0 +1,207 @@
+# Java Data Types
+
+Java is **statically typed**: every variable has a type that is fixed when you declare it, and the compiler checks it before the program runs.
+
+```java
+int age = 20;          // type  name  = value
+```
+
+Java has two families of types:
+
+1. **Primitive types**: 8 built-in types that store the value directly.
+2. **Reference types**: everything else (`String`, arrays, classes, interfaces). The variable stores a *reference* (address) to an object.
+
+## Primitive types
+
+| Type | Size | Range | Default | Example |
+|------|------|-------|---------|---------|
+| `byte` | 8 bits | -128 to 127 | `0` | `byte b = 100;` |
+| `short` | 16 bits | -32,768 to 32,767 | `0` | `short s = 5000;` |
+| `int` | 32 bits | -2,147,483,648 to 2,147,483,647 | `0` | `int age = 20;` |
+| `long` | 64 bits | about -9.2 × 10^18 to 9.2 × 10^18 | `0L` | `long n = 8_000_000_000L;` |
+| `float` | 32 bits | about 6 to 7 decimal digits of precision | `0.0f` | `float p = 99.5f;` |
+| `double` | 64 bits | about 15 to 16 decimal digits of precision | `0.0` | `double pi = 3.14159;` |
+| `char` | 16 bits | 0 to 65,535 (one UTF-16 character) | `'\u0000'` | `char g = 'A';` |
+| `boolean` | JVM-dependent | `true` or `false` | `false` | `boolean ok = true;` |
+
+::: {.callout-important title="Defaults only apply to fields"}
+The default values above are given only to **fields** (variables inside a class). A **local variable** (inside a method) has no default, and using it before assigning gives a compile error.
+:::
+
+### Things to remember
+
+- Whole-number literals are `int` by default. Add `L` for `long`: `10000000000L`.
+- Decimal literals are `double` by default. Add `f` for `float`: `3.14f`.
+- `char` uses **single quotes** (`'A'`); `String` uses **double quotes** (`"A"`).
+- Underscores make big numbers readable: `1_000_000`.
+- Use `int` for whole numbers and `double` for decimals unless you have a reason not to.
+
+## Reference types
+
+```java
+String name = "Asha";
+int[] marks = {80, 75, 90};
+```
+
+The most important reference type is `String`.
+
+- Strings are **immutable**: methods like `toUpperCase()` return a new string and leave the original unchanged.
+- Compare contents with `equals()`, not `==`.
+
+```java
+String a = "hello";
+String b = new String("hello");
+
+System.out.println(a == b);       // false (different objects)
+System.out.println(a.equals(b));  // true  (same characters)
+```
+
+::: {.callout-warning title="== vs equals()"}
+For reference types, `==` checks whether two variables point to the **same object**. `equals()` checks whether the **contents** are the same. For strings, always use `equals()`.
+:::
+
+Reference variables that point to nothing hold `null`. Calling a method on `null` throws a `NullPointerException`.
+
+## Primitive vs reference
+
+| | Primitive | Reference |
+|---|-----------|-----------|
+| Stores | The actual value | Address of an object |
+| Can be `null` | No | Yes |
+| Has methods | No | Yes |
+| Examples | `int`, `double`, `char` | `String`, `int[]`, `Integer` |
+
+## Wrapper classes
+
+Each primitive has an object version, used where objects are required (for example, in collections like `ArrayList`).
+
+| Primitive | Wrapper |
+|-----------|---------|
+| `int` | `Integer` |
+| `double` | `Double` |
+| `char` | `Character` |
+| `boolean` | `Boolean` |
+| `long` | `Long` |
+
+Java converts automatically between the two: **autoboxing** (primitive to wrapper) and **unboxing** (wrapper to primitive).
+
+```java
+Integer boxed = 10;       // autoboxing
+int plain = boxed;        // unboxing
+
+ArrayList<Integer> list = new ArrayList<>();
+list.add(5);              // list cannot hold int, so 5 is boxed
+```
+
+Useful wrapper methods:
+
+```java
+int n = Integer.parseInt("42");        // String to int
+String s = String.valueOf(3.5);        // double to String
+System.out.println(Integer.MAX_VALUE); // 2147483647
+```
+
+## Type conversion (casting)
+
+### Widening (automatic, safe)
+
+A smaller type is converted to a larger one without any code:
+
+```
+byte → short → int → long → float → double
+              char ↗
+```
+
+```java
+int a = 10;
+double d = a;        // d is 10.0
+```
+
+### Narrowing (manual, may lose data)
+
+A larger type must be cast explicitly, and the value may be truncated or wrap around.
+
+```java
+double x = 9.99;
+int y = (int) x;     // 9  (decimal part is cut, not rounded)
+
+int big = 130;
+byte b = (byte) big; // -126 (130 does not fit in 8 bits, so it wraps)
+```
+
+### char and int
+
+`char` is really a number (its Unicode value), so arithmetic works on it.
+
+```java
+char c = 'A';
+System.out.println(c + 1);         // 66  (int)
+System.out.println((char)(c + 1)); // B
+```
+
+## Common gotchas
+
+**Integer division drops the decimal part**
+
+```java
+System.out.println(7 / 2);     // 3
+System.out.println(7 / 2.0);   // 3.5
+System.out.println(7 % 2);     // 1  (remainder)
+```
+
+**Overflow wraps around silently**
+
+```java
+int max = Integer.MAX_VALUE;
+System.out.println(max + 1);   // -2147483648
+```
+
+If numbers can get large, use `long`.
+
+**Floating point is not exact**
+
+```java
+System.out.println(0.1 + 0.2);        // 0.30000000000000004
+System.out.println(0.1 + 0.2 == 0.3); // false
+```
+
+Never compare `double` values with `==`. For money, use `BigDecimal`.
+
+**Integer cache with ==**
+
+```java
+Integer p = 127, q = 127;
+System.out.println(p == q);   // true  (small values are cached)
+
+Integer m = 128, n = 128;
+System.out.println(m == n);   // false (different objects)
+System.out.println(m.equals(n)); // true
+```
+
+Compare wrapper objects with `equals()`.
+
+## `var` (Java 10 and later)
+
+For local variables, the compiler can work out the type for you:
+
+```java
+var count = 10;          // int
+var name = "Asha";       // String
+```
+
+The type is still fixed; `var` only saves typing. It cannot be used for fields or method parameters.
+
+## Quick check
+
+1. What is the default type of `3.14`? **double**
+2. Why does `byte b = 200;` fail? **200 is outside -128 to 127.**
+3. What does `(int) 5.9` give? **5**
+4. How should two strings be compared? **With `equals()`.**
+
+## Summary
+
+- Java has 8 primitive types; everything else is a reference type.
+- Use `int` and `double` by default; add `L` and `f` for `long` and `float` literals.
+- Widening conversion is automatic; narrowing needs a cast and can lose data.
+- Compare objects (including strings and wrappers) with `equals()`, not `==`.
+- Watch out for integer division, overflow, and floating-point inexactness.

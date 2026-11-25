@@ -1,0 +1,35 @@
+project:
+  type: book
+  output-dir: _site
+
+book:
+  title: "DOUNO"
+  favicon: assets/DO.png
+  page-footer:
+    center: "© DOUNO - Do you know?"
+  sidebar:
+    logo: assets/DO.png
+    style: floating
+    collapse-level: 1
+    search: true
+  chapters:
+    - href: index.qmd
+      text: "Home"
+    - part: JAVA
+      chapters: 
+        - java\Basics\DataTypes.qmd
+format:
+  html:
+    bread-crumbs: true
+    grid:
+      sidebar-width: 240px
+      body-width: 1020px
+      margin-width: 200px
+      gutter-width: 1.2rem
+      
+    theme: [flatly, assets/style.scss]
+    toc-title: "On this page"
+    number-sections: false
+    code-overflow: wrap
+    callout-appearance: minimal
+    math: katex

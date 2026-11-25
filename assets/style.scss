@@ -1,0 +1,18 @@
+/*-- scss:defaults --*/
+$brand-primary: #037f81;   // teal
+$brand-accent:  #d50000;   // red
+
+$primary: $brand-primary;
+$link-color: $brand-primary;
+$link-hover-color: $brand-accent;
+
+/*-- scss:rules --*/
+.sidebar-logo {
+  display: block;
+  margin: 0 auto;
+  max-height: 80px;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.sidebar-title { display: none; }
